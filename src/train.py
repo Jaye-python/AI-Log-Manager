@@ -23,7 +23,6 @@ def train_pipeline(data_path: str):
 
     y_pred = model.predict(X_test)
     
-    # 1. Generate structured dict for JSON saving
     report_dict = classification_report(
         y_test, y_pred, 
         target_names=encoder.classes_, 
@@ -35,8 +34,6 @@ def train_pipeline(data_path: str):
         "accuracy": accuracy_score(y_test, y_pred),
         "report": report_dict
     }
-    
-    # 2. Generate clean text grid for direct human inspection
     report_text = str(classification_report(
         y_test, y_pred, 
         target_names=encoder.classes_, 

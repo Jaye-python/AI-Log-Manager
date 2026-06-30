@@ -18,10 +18,8 @@ class LogInferenceEngine:
             self.vectorizer = joblib.load(VECTORIZER_PATH)
             self.encoder = joblib.load(ENCODER_PATH)
         
-        # Load the severity and resolutions master dictionary
         if os.path.exists(LABELS_PATH):
             labels_df = pd.read_csv(LABELS_PATH)
-            # Create a fast-lookup dictionary: { "RC-01": {"severity": "High", "label": "Authentication Failure"} }
             self.labels_metadata = labels_df.set_index('id').to_dict(orient='index')
 
     @property
@@ -37,10 +35,8 @@ class LogInferenceEngine:
         true_severity = meta.get('severity', 'UNKNOWN').upper()
         friendly_name = meta.get('label', 'System Variance')
 
-        # Extract message content after standard bracket layouts if present
         clean_msg = msg.split(']')[-1].strip() if ']' in msg else msg
         
-        # Format requested structural summary payload
         return {
             "severity": true_severity,
             "summary": f"Component '{svc}' encountered {friendly_name}. Detail: {clean_msg}"
@@ -49,8 +45,7 @@ class LogInferenceEngine:
     def predict_and_summarize(self, df: pd.DataFrame) -> list:
         if not self.is_ready:
             raise ValueError("Model artifacts or root cause label metadata missing.")
-            
-        # 1. Predict the root cause using our purified text features
+        
         X = prepare_data(df, is_training=False, vectorizer=self.vectorizer)
         predictions = self.model.predict(X)
         predicted_labels = self.encoder.inverse_transform(predictions)
