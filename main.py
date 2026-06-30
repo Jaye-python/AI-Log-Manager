@@ -1,10 +1,13 @@
 import io
+import logging
 import pickle
 import pandas as pd
 from contextlib import asynccontextmanager
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from pydantic import BaseModel
 from typing import List
+
+logging.getLogger("uvicorn.access").disabled = True
 
 from src.train import train_pipeline
 from src.inference import LogInferenceEngine
