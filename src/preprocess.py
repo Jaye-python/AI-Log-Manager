@@ -18,14 +18,9 @@ def clean_log_message(text: str) -> str:
     if not isinstance(text, str):
         return ""
     
-    # 1. Standardize special bounding brackets out of string context
-    text = re.sub(r'[\[\]\(\):,\-]', ' ', text)
-    
-    # 2. Iterate through and apply our regular expression mappings sequentially
+    text = re.sub(r'[\[\]\(\):,\-]', ' ', text)    
     for pattern, substitution in _PATTERNS:
         text = pattern.sub(substitution, text)
-        
-    # 3. Lowercase and collapse variable whitespaces
     text = text.lower()
     return " ".join(text.split())
 

@@ -1,6 +1,7 @@
 import io
 import pickle
 import pandas as pd
+from contextlib import asynccontextmanager
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from pydantic import BaseModel
 from typing import List
@@ -9,13 +10,19 @@ from src.train import train_pipeline
 from src.inference import LogInferenceEngine
 from src.config import DATA_DIR
 
+engine = LogInferenceEngine()
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    engine.load_artifacts()
+    yield
+
 app = FastAPI(
     title="Log Manager AI Pipeline",
     description="Automated system log classification, ingestion optimization, and structural breakdown summary engine.",
-    version="1.0.0"
+    version="1.0.0",
+    lifespan=lifespan
 )
-
-engine = LogInferenceEngine()
 
 class SingleLogInput(BaseModel):
     log_id: str
@@ -31,10 +38,6 @@ class BatchPredictionResponse(BaseModel):
     log_id: str
     root_cause_label: str
     analysis: AnalysisSummary
-
-@app.on_event("startup")
-def startup_event():
-    engine.load_artifacts()
 
 @app.post("/preprocess-and-train", tags=["Pipeline Administration"])
 def pipeline_train():
