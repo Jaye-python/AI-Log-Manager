@@ -20,6 +20,8 @@
 * Start the FastAPI development server: 
 `uvicorn main:app --reload`
 
+* Navigate to: `http://localhost:8000/docs`
+
 # Folder Structure
 
 ```
