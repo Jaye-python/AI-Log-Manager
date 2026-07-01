@@ -8,7 +8,7 @@
 | **scikit-learn LinearSVC** | The classifier that predicts root cause categories from log text |
 | **scikit-learn TF-IDF** | Converts log message text into numerical features the model can learn from — scores words by how useful they are for distinguishing categories |
 | **joblib** | Serialises and deserialises the trained model, vectorizer, and encoder to/from `.pkl` files on disk |
-| **pandas** | Reads CSV/pickle inputs, structures prediction results, and writes output files |
+| **pandas** | Reads CSV inputs, structures prediction results, and writes output files |
 | **Python `re`** | Regex-based log message cleaning — masks IPs, ports, numbers, and timestamps with generic placeholders before training and inference |
 | **Pydantic** | Validates and parses incoming JSON request bodies for the `/predict/single` endpoint |
 | **uvicorn** | ASGI server that runs the FastAPI application |
@@ -65,7 +65,7 @@ log_manager/
 │   └── predictions/    # Created dynamically on first prediction
 │       ├── single_20240528_210400.csv
 │       ├── file_ingest_20240528_210500.csv
-│       └── pickle_ingest_20240528_210600.csv
+│       
 │
 ├── main.py            # FastAPI Application
 ├── requirements.txt
@@ -309,7 +309,6 @@ Each file is named after the endpoint that produced it plus the date and time it
 |----------|------------------|
 | `/predict/single` | `prediction_single_20240528_210400.csv` |
 | `/predict/file-ingest` | `prediction_batch_20240528_210500.csv` |
-| `/predict/pickle-ingest` | `pickle_ingest_20240528_210600.csv` |
 
 ### CSV columns
 
@@ -416,7 +415,6 @@ The confusion matrix is a grid where each row represents the real category and e
 ### Scaling
 - Containerise the FastAPI app with Docker and deploy behind a load balancer (e.g. AWS ALB) with multiple replicas
 - The model artifacts are read-only at inference time — all replicas can share the same mounted volume or load from S3 on startup
-- For high-throughput batch workloads, move the pickle-ingest endpoint behind an async queue (e.g. SQS) so large payloads don't block the API
 - Cache the loaded model in memory per worker process — the current `LogInferenceEngine` already does this; ensure the container has enough memory allocated so the OS doesn't evict it
 
 ### Reliability
