@@ -1,53 +1,45 @@
-import json
 import joblib
 import pandas as pd
 from sklearn.svm import LinearSVC
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import classification_report, accuracy_score
-from src.preprocess import prepare_data
+from src.preprocess import fit_transform_data, transform_data
+from src.evaluate import evaluate_predictions
 from src.config import (
-    MODEL_PATH, VECTORIZER_PATH, ENCODER_PATH, 
-    METRICS_PATH, REPORT_PATH
+    MODEL_PATH, VECTORIZER_PATH, ENCODER_PATH,
+    METRICS_PATH, REPORT_PATH, LABELS_PATH, EVALUATIONS_CSV_PATH
 )
 
 def train_pipeline(data_path: str):
-    """Loads dataset, trains LinearSVC classifier, and writes all validation files to disk."""
+    """Runs the full training process from start to finish. Reads the log dataset,
+    splits it into training and test sets, trains the classifier, measures how well
+    it performed, and saves everything to disk so the API can use it."""
     df = pd.read_csv(data_path)
-    
-    X, y, vectorizer, encoder = prepare_data(df, is_training=True)
-    
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
-    
+    labels_df = pd.read_csv(LABELS_PATH)
+
+    df_train, df_test = train_test_split(df, test_size=0.2, random_state=42, stratify=df['root_cause_label'])
+
+    X_train, y_train, vectorizer, encoder = fit_transform_data(df_train, labels_df)
+
+    X_test = transform_data(df_test, vectorizer)
+    y_test = encoder.transform(df_test['root_cause_label'])
+
     model = LinearSVC(C=1.0, random_state=42, dual=False)
     model.fit(X_train, y_train)
 
     y_pred = model.predict(X_test)
-    
-    report_dict = classification_report(
-        y_test, y_pred, 
-        target_names=encoder.classes_, 
-        output_dict=True, 
-        zero_division=0
-    )
-    
-    metrics = {
-        "accuracy": accuracy_score(y_test, y_pred),
-        "report": report_dict
-    }
-    report_text = str(classification_report(
-        y_test, y_pred, 
-        target_names=encoder.classes_, 
-        zero_division=0
-    ))
-    
+    y_true_labels = encoder.inverse_transform(y_test)
+    y_pred_labels = encoder.inverse_transform(y_pred)
+
     joblib.dump(model, MODEL_PATH)
     joblib.dump(vectorizer, VECTORIZER_PATH)
     joblib.dump(encoder, ENCODER_PATH)
-    
-    with open(METRICS_PATH, "w") as f:
-        json.dump(metrics, f, indent=2)
-        
-    with open(REPORT_PATH, "w") as f:
-        f.write(report_text)
-    
+
+    metrics = evaluate_predictions(
+        y_true_labels, y_pred_labels,
+        labels=list(encoder.classes_),
+        metrics_path=METRICS_PATH,
+        report_path=REPORT_PATH,
+        csv_path=EVALUATIONS_CSV_PATH,
+    )
+
     return metrics
