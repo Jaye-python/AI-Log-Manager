@@ -128,28 +128,3 @@ async def predict_file_batch(file: UploadFile = File(...)):
     res = engine.predict_and_summarize(df)
     path = _save_predictions_csv(res, "prediction_batch")
     return _safe_file_response(path, PREDICTIONS_DIR, os.path.basename(path))
-
-@app.post("/predict/pickle-ingest", tags=["High Volume Processing Optimization"])
-async def predict_pickle_batch(file: UploadFile = File(...)):
-    """Accepts safe system byte serialized (Pickled) Pandas DataFrames for performance optimization."""
-    if not engine.is_ready:
-        raise HTTPException(status_code=400, detail="Model runtime uninitialized.")
-
-    try:
-        contents = await file.read()
-        df = pickle.loads(contents)
-        if not isinstance(df, pd.DataFrame):
-            raise HTTPException(status_code=400, detail="Pickled byte payload must resolve to a valid Pandas DataFrame object.")
-
-        required_cols = ['log_id', 'service', 'log_message']
-        if not all(col in df.columns for col in required_cols):
-            raise HTTPException(status_code=400, detail=f"Missing structural features. Required: {required_cols}")
-
-        res = engine.predict_and_summarize(df)
-        path = _save_predictions_csv(res, "pickle_ingest")
-    except HTTPException:
-        raise
-    except Exception as e:
-        raise HTTPException(status_code=400, detail=f"Failed to securely de-serialize incoming log payload: {str(e)}")
-
-    return _safe_file_response(path, PREDICTIONS_DIR, os.path.basename(path))

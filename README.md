@@ -221,51 +221,6 @@ LOG-002,RC-02,Connection timed out after 30s on port 5432,RC-02,Database Connect
 
 ---
 
-### `POST /predict/pickle-ingest`
-**Tag:** High Volume Processing Optimization
-
-Accepts a serialized Pandas DataFrame (`.pkl`) for high-throughput batch inference. Bypasses CSV string parsing overhead for production-scale ingestion pipelines. Returns a downloadable CSV and saves it to `artifacts/predictions/`.
-
-**Request:** `multipart/form-data`
-
-| Field | Type | Description |
-|-------|------|-------------|
-| `file` | `file` | A binary `.pkl` file containing a serialized Pandas DataFrame |
-
-**Generating a valid pickle payload:**
-```python
-import pickle
-import pandas as pd
-
-df = pd.DataFrame([{
-    "log_id": "LOG-001",
-    "timestamp": "2024-01-15T08:32:11Z",
-    "service": "auth-service",
-    "log_message": "[ERROR] Failed login attempt from 192.168.1.45"
-}])
-
-with open("logs.pkl", "wb") as f:
-    pickle.dump(df, f)
-```
-
-**Response:** A downloadable `.csv` file named `pickle_ingest_<timestamp>.csv`
-
-**Sample CSV output:**
-```csv
-log_id,root_cause_label,issue,predicted_root_cause_id,predicted_root_cause_label,affected_service,severity,recommended_action,confidence
-LOG-001,RC-01,Failed login attempt from 192.168.1.45,RC-01,Authentication Failure,auth-service,High,"Rotate credentials, refresh token, re-authenticate service account",0.9812
-```
-
-**Error Responses:**
-
-| Status | Detail |
-|--------|--------|
-| `400`  | `Model runtime uninitialized.` |
-| `400`  | `Pickled byte payload must resolve to a valid Pandas DataFrame object.` |
-| `400`  | `Failed to securely de-serialize incoming log payload: <error detail>` |
-
----
-
 ## What I use for training (file, fields, models) and training steps
 
 ### Source Files
