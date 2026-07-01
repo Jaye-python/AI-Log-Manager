@@ -1,0 +1,121 @@
+log_id,timestamp,service,log_message
+LOG-0001,2024-05-28T21:04:00Z,fx-rate-fetcher,ERROR [payment-gateway] Upstream provider Twilio returned 502. Retried 1 times. Failing over.
+LOG-0002,2024-02-20T06:46:00Z,ml-inference,ERROR [file-processor] File descriptor limit reached (62256/15). New connections refused.
+LOG-0003,2024-09-06T10:22:00Z,api-gateway,WARN [api-gateway] 401 returned to client client_3536: bearer token missing from Authorization header.
+LOG-0004,2024-12-09T20:15:00Z,transaction-worker,ERROR [log-aggregator] Disk write failed: volume /data at 87% capacity. Dropping logs.
+LOG-0005,2024-05-25T19:04:00Z,data-pipeline,ERROR [transaction-validator] Constraint violation: currency_code 'null' not in allowed list.
+LOG-0006,2024-06-11T15:28:00Z,reporting-api,ERROR [webhook-dispatcher] Rate limit hit on endpoint /v2/events. Retry-After: 120s.
+LOG-0007,2024-11-11T21:19:00Z,data-export,CRITICAL [audit-service] Privilege escalation attempt blocked: user usr_68176 — insufficient role.
+LOG-0008,2024-03-19T18:36:00Z,iam-middleware,WARN [api-gateway] Scope mismatch: token has 'read' scope but endpoint requires 'write'.
+LOG-0009,2024-06-10T13:10:00Z,storage-service,CRITICAL [audit-service] Privilege escalation attempt blocked: user usr_37114 — insufficient role.
+LOG-0010,2024-06-09T07:50:00Z,data-pipeline,WARN [data-pipeline] Null value in required field 'merchant_id'. Row 4 skipped.
+LOG-0011,2024-12-30T23:41:00Z,kyc-service,ERROR [api-handler] Payload validation error: 'transaction_type' enum mismatch. Received: 'INVALID'.
+LOG-0012,2024-05-21T11:08:00Z,service-mesh,CRITICAL [vpc-gateway] Packet loss 97% detected on internal network segment. Alert triggered.
+LOG-0013,2024-09-02T14:28:00Z,transaction-validator,WARN [data-pipeline] Null value in required field 'merchant_id'. Row 5 skipped.
+LOG-0014,2024-06-05T15:35:00Z,ingestion-service,"ERROR [kyc-service] Date format error in field 'date_of_birth': expected YYYY-MM-DD, got 'N/A'."
+LOG-0015,2024-03-30T20:38:00Z,ingestion-service,"ERROR [kyc-service] Date format error in field 'date_of_birth': expected YYYY-MM-DD, got 'DEBIT_SPECIAL'."
+LOG-0016,2024-05-23T04:57:00Z,import-service,ERROR [transaction-validator] Constraint violation: currency_code 'DEBIT_SPECIAL' not in allowed list.
+LOG-0017,2024-04-10T08:46:00Z,db-pool,ERROR [db-pool] Max wait time exceeded (11266ms) waiting for idle connection. Active: 9/15.
+LOG-0018,2024-02-08T00:54:00Z,ml-inference,WARN [cache-service] Redis memory limit reached (2457MB). Evicting LRU keys.
+LOG-0019,2024-11-19T00:52:00Z,payments-core,ERROR [query-executor] Failed to acquire DB connection from pool: all 15 connections exhausted.
+LOG-0020,2024-10-23T12:49:00Z,data-export,WARN [api-gateway] Scope mismatch: token has 'read' scope but endpoint requires 'write'.
+LOG-0021,2024-04-18T01:35:00Z,transaction-validator,"ERROR [ingestion-service] Schema validation failed: field 'amount' expected float, got string. Record ID: rec_65194."
+LOG-0022,2024-10-05T17:30:00Z,kyc-service,CRITICAL [payout-service] Partner bank API Flutterwave returned unexpected 500. Transaction ID: txn_147549.
+LOG-0023,2024-07-06T12:14:00Z,ml-inference,WARN [cache-service] Redis memory limit reached (6617MB). Evicting LRU keys.
+LOG-0024,2024-05-28T04:29:00Z,batch-processor,WARN [api-gateway] Client client_9897 burst limit exceeded (5000 RPS). Returning 429.
+LOG-0025,2024-09-18T02:25:00Z,query-executor,WARN [reporting-svc] Slow query detected (15997ms). DB connection dropped mid-execution.
+LOG-0026,2024-09-14T00:42:00Z,dns-resolver,ERROR [grpc-client] Failed to connect to notification-svc:6379. TLS handshake timeout after 8419ms.
+LOG-0027,2024-11-10T21:10:00Z,ml-inference,CRITICAL [transaction-worker] OOM error — JVM heap exhausted. Allocated: 7088MB. Killing process.
+LOG-0028,2024-03-12T14:10:00Z,kyc-service,ERROR [fx-rate-fetcher] Rate feed from Jumio unavailable. Last successful pull: 2024-02-28T08:36:00Z.
+LOG-0029,2024-10-16T18:42:00Z,log-aggregator,WARN [cache-service] Redis memory limit reached (6059MB). Evicting LRU keys.
+LOG-0030,2024-09-04T11:02:00Z,data-pipeline,"ERROR [kyc-service] Date format error in field 'date_of_birth': expected YYYY-MM-DD, got 'DEBIT_SPECIAL'."
+LOG-0031,2024-09-06T07:04:00Z,cache-service,ERROR [file-processor] File descriptor limit reached (65384/15). New connections refused.
+LOG-0032,2024-07-08T07:02:00Z,kyc-service,CRITICAL [payout-service] Partner bank API Flutterwave returned unexpected 500. Transaction ID: txn_470774.
+LOG-0033,2024-09-22T11:24:00Z,reporting-svc,CRITICAL [order-service] Database unreachable: pg-replica-02. Socket timeout after 28351ms.
+LOG-0034,2024-08-20T01:02:00Z,query-executor,ERROR [db-pool] Max wait time exceeded (28059ms) waiting for idle connection. Active: 12/15.
+LOG-0035,2024-02-22T22:33:00Z,reporting-api,WARN [api-gateway] Client client_5067 burst limit exceeded (5000 RPS). Returning 429.
+LOG-0036,2024-05-14T18:34:00Z,data-export,ERROR [iam-middleware] IAM policy evaluation failed: missing 'payments:write' scope for client client_4908.
+LOG-0037,2024-03-30T12:41:00Z,kyc-service,"ERROR [ingestion-service] Schema validation failed: field 'amount' expected float, got string. Record ID: rec_61996."
+LOG-0038,2024-07-06T18:41:00Z,http-client,ERROR [grpc-client] Failed to connect to payment-core:3306. TLS handshake timeout after 11965ms.
+LOG-0039,2024-09-21T08:24:00Z,webhook-dispatcher,WARN [api-gateway] 429 Too Many Requests — client client_7338 exceeded 100 RPM limit. Throttling applied.
+LOG-0040,2024-09-21T12:22:00Z,transaction-validator,"ERROR [ingestion-service] Schema validation failed: field 'amount' expected float, got string. Record ID: rec_82970."
+LOG-0041,2024-09-06T15:56:00Z,oauth-handler,WARN [api-gateway] 401 Unauthorized — invalid API key provided by client client_8478. Key prefix: p6qf5q14...
+LOG-0042,2024-01-04T16:56:00Z,kyc-service,WARN [data-enrichment] Third-party enrichment API AWS-SNS slow response: 15481ms (SLA: 2000ms).
+LOG-0043,2024-08-13T05:14:00Z,http-client,ERROR [grpc-client] Failed to connect to auth-service:3306. TLS handshake timeout after 24449ms.
+LOG-0044,2024-09-20T20:17:00Z,kyc-service,WARN [data-enrichment] Third-party enrichment API Flutterwave slow response: 27463ms (SLA: 2000ms).
+LOG-0045,2024-03-17T05:10:00Z,identity-provider,ERROR [session-manager] Authentication handshake failed: HMAC signature mismatch. IP: 10.193.40.142
+LOG-0046,2024-11-04T22:52:00Z,storage-service,WARN [api-gateway] Scope mismatch: token has 'read' scope but endpoint requires 'write'.
+LOG-0047,2024-12-04T07:26:00Z,query-executor,CRITICAL [order-service] Database unreachable: pg-replica-02. Socket timeout after 10986ms.
+LOG-0048,2024-02-28T15:43:00Z,kyc-service,ERROR [api-handler] Payload validation error: 'transaction_type' enum mismatch. Received: 'null'.
+LOG-0049,2024-09-02T06:37:00Z,order-service,ERROR [db-pool] Connection to postgres-primary:27017 timed out after 18059ms. Pool size: 12/15.
+LOG-0050,2024-11-27T13:01:00Z,webhook-dispatcher,WARN [reporting-api] Quota exceeded for org org_475. Monthly limit: 500 requests.
+LOG-0051,2024-01-23T04:36:00Z,batch-processor,WARN [api-gateway] 429 Too Many Requests — client client_2800 exceeded 500 RPM limit. Throttling applied.
+LOG-0052,2024-03-23T04:40:00Z,import-service,"ERROR [ingestion-service] Schema validation failed: field 'amount' expected float, got string. Record ID: rec_14222."
+LOG-0053,2024-01-21T18:09:00Z,payment-gateway,WARN [kyc-service] External identity verification API timeout after 18065ms. Provider: Jumio.
+LOG-0054,2024-03-26T08:59:00Z,log-aggregator,CRITICAL [ml-inference] Model inference OOM: GPU memory exhausted (5936MB). Request dropped.
+LOG-0055,2024-09-21T12:38:00Z,notification-svc,ERROR [payment-gateway] Upstream provider Onfido returned 502. Retried 5 times. Failing over.
+LOG-0056,2024-11-22T00:56:00Z,reporting-api,ERROR [batch-processor] External API rate cap reached mid-batch. Processed 5/1315 records.
+LOG-0057,2024-02-13T06:28:00Z,payments-core,CRITICAL [payments-core] Database write failed: connection to mysql-primary lost after 23182ms.
+LOG-0058,2024-08-29T15:10:00Z,log-aggregator,CRITICAL [worker-node] CPU throttled at 97%. Node: worker-node-18. Autoscaler triggered.
+LOG-0059,2024-07-29T19:09:00Z,grpc-client,ERROR [http-client] Connection refused: host redis-cluster-03:3306 unreachable. ECONNREFUSED.
+LOG-0060,2024-04-03T19:42:00Z,data-export,ERROR [data-export] 403 returned: org org_944 not authorised for bulk export. Feature flag disabled.
+LOG-0061,2024-05-15T05:46:00Z,service-mesh,ERROR [service-mesh] Network timeout reaching reporting-api in eu-west-1. Latency: 24213ms.
+LOG-0062,2024-08-20T19:37:00Z,http-client,ERROR [grpc-client] Failed to connect to notification-svc:5432. TLS handshake timeout after 3316ms.
+LOG-0063,2024-04-27T12:24:00Z,kyc-service,ERROR [payment-gateway] Upstream provider Flutterwave returned 502. Retried 3 times. Failing over.
+LOG-0064,2024-02-25T00:12:00Z,oauth-handler,WARN [api-gateway] 401 Unauthorized — invalid API key provided by client client_6539. Key prefix: zccblskr...
+LOG-0065,2024-09-15T21:26:00Z,dns-resolver,WARN [health-checker] data-pipeline health endpoint unreachable: connection timed out after 24444ms.
+LOG-0066,2024-11-06T03:11:00Z,vpc-gateway,WARN [dns-resolver] DNS lookup failed for redis-cluster-03. NXDOMAIN. Retrying with fallback resolver.
+LOG-0067,2024-11-10T19:02:00Z,oauth-handler,WARN [api-gateway] 401 returned to client client_2052: bearer token missing from Authorization header.
+LOG-0068,2024-09-14T03:05:00Z,audit-service,WARN [admin-api] 403 Forbidden — user usr_68926 attempted to access /admin/users without admin role.
+LOG-0069,2024-12-03T04:57:00Z,oauth-handler,CRITICAL [identity-provider] Service account svc-account-02@platform.iam credentials rejected. Last valid auth: 2024-12-16T10:53:00Z.
+LOG-0070,2024-10-03T00:57:00Z,payout-service,CRITICAL [payout-service] Partner bank API Onfido returned unexpected 500. Transaction ID: txn_708519.
+LOG-0071,2024-09-24T13:23:00Z,transaction-worker,CRITICAL [worker-node] CPU throttled at 88%. Node: worker-node-01. Autoscaler triggered.
+LOG-0072,2024-12-23T16:27:00Z,webhook-dispatcher,WARN [api-gateway] Client client_3034 burst limit exceeded (500 RPS). Returning 429.
+LOG-0073,2024-09-03T12:22:00Z,batch-processor,WARN [reporting-api] Quota exceeded for org org_771. Monthly limit: 1000 requests.
+LOG-0074,2024-12-22T18:06:00Z,search-service,WARN [api-gateway] 429 Too Many Requests — client client_3255 exceeded 5000 RPM limit. Throttling applied.
+LOG-0075,2024-03-09T08:30:00Z,webhook-dispatcher,WARN [api-gateway] Client client_1496 burst limit exceeded (100 RPS). Returning 429.
+LOG-0076,2024-02-12T09:38:00Z,notification-svc,WARN [kyc-service] External identity verification API timeout after 3517ms. Provider: Sendgrid.
+LOG-0077,2024-07-28T08:12:00Z,db-pool,WARN [reporting-svc] Slow query detected (28419ms). DB connection dropped mid-execution.
+LOG-0078,2024-12-29T23:50:00Z,ingestion-service,WARN [import-service] 4 records rejected: missing required field 'account_number'.
+LOG-0079,2024-10-22T16:07:00Z,batch-processor,WARN [api-gateway] Client client_6876 burst limit exceeded (500 RPS). Returning 429.
+LOG-0080,2024-01-04T12:41:00Z,data-pipeline,WARN [import-service] 3 records rejected: missing required field 'account_number'.
+LOG-0081,2024-12-18T10:26:00Z,fx-rate-fetcher,CRITICAL [payout-service] Partner bank API Twilio returned unexpected 500. Transaction ID: txn_989227.
+LOG-0082,2024-02-24T04:27:00Z,payments-core,CRITICAL [order-service] Database unreachable: pg-replica-02. Socket timeout after 5332ms.
+LOG-0083,2024-05-09T08:54:00Z,oauth-handler,WARN [api-gateway] 401 returned to client client_2790: bearer token missing from Authorization header.
+LOG-0084,2024-08-04T18:23:00Z,ml-inference,CRITICAL [worker-node] CPU throttled at 85%. Node: worker-node-13. Autoscaler triggered.
+LOG-0085,2024-05-21T21:25:00Z,api-gateway,WARN [api-gateway] 401 Unauthorized — invalid API key provided by client client_4164. Key prefix: o9t7e8g8...
+LOG-0086,2024-07-30T17:50:00Z,oauth-handler,ERROR [auth-service] Token validation failed for user_id=usr_88504: JWT expired at 2024-09-07T00:07:00Z. Request rejected.
+LOG-0087,2024-09-04T05:23:00Z,notification-svc,WARN [kyc-service] External identity verification API timeout after 10423ms. Provider: Paystack.
+LOG-0088,2024-10-11T15:16:00Z,transaction-validator,WARN [import-service] 3 records rejected: missing required field 'account_number'.
+LOG-0089,2024-10-22T11:49:00Z,session-manager,ERROR [auth-service] Login attempt failed for user usr_99192 — account locked after 5 failed attempts.
+LOG-0090,2024-03-11T21:07:00Z,order-service,WARN [reporting-svc] Slow query detected (24164ms). DB connection dropped mid-execution.
+LOG-0091,2024-08-16T22:10:00Z,transaction-worker,ERROR [file-processor] File descriptor limit reached (63335/15). New connections refused.
+LOG-0092,2024-04-19T16:25:00Z,identity-provider,WARN [api-gateway] 401 Unauthorized — invalid API key provided by client client_5616. Key prefix: sj6bw3bm...
+LOG-0093,2024-10-08T19:44:00Z,storage-service,ERROR [iam-middleware] IAM policy evaluation failed: missing 'payments:write' scope for client client_1793.
+LOG-0094,2024-03-23T12:40:00Z,api-gateway,WARN [reporting-api] Quota exceeded for org org_591. Monthly limit: 100 requests.
+LOG-0095,2024-02-16T04:30:00Z,ml-inference,CRITICAL [transaction-worker] OOM error — JVM heap exhausted. Allocated: 7072MB. Killing process.
+LOG-0096,2024-08-10T02:04:00Z,service-mesh,ERROR [service-mesh] Network timeout reaching payment-core in eu-west-1. Latency: 28272ms.
+LOG-0097,2024-04-23T11:05:00Z,grpc-client,ERROR [http-client] Connection refused: host kafka-broker-02:3306 unreachable. ECONNREFUSED.
+LOG-0098,2024-01-20T23:24:00Z,session-manager,ERROR [auth-service] Login attempt failed for user usr_32241 — account locked after 5 failed attempts.
+LOG-0099,2024-11-10T20:33:00Z,reporting-api,ERROR [search-service] Elasticsearch query rate exceeded: 100 QPS. Request queued.
+LOG-0100,2024-12-30T19:03:00Z,log-aggregator,ERROR [file-processor] File descriptor limit reached (60978/15). New connections refused.
+LOG-0101,2024-11-23T15:28:00Z,db-pool,ERROR [db-pool] Connection to postgres-primary:6379 timed out after 20728ms. Pool size: 8/15.
+LOG-0102,2024-04-13T21:59:00Z,ml-inference,CRITICAL [transaction-worker] OOM error — JVM heap exhausted. Allocated: 6108MB. Killing process.
+LOG-0103,2024-05-26T06:02:00Z,grpc-client,ERROR [grpc-client] Failed to connect to notification-svc:3306. TLS handshake timeout after 13367ms.
+LOG-0104,2024-09-18T16:44:00Z,admin-api,ERROR [iam-middleware] IAM policy evaluation failed: missing 'payments:write' scope for client client_3162.
+LOG-0105,2024-11-10T05:43:00Z,db-pool,CRITICAL [payments-core] Database write failed: connection to mysql-primary lost after 27402ms.
+LOG-0106,2024-07-03T07:41:00Z,auth-service,WARN [api-gateway] 401 Unauthorized — invalid API key provided by client client_7484. Key prefix: awudtsem...
+LOG-0107,2024-03-21T02:17:00Z,audit-service,WARN [admin-api] 403 Forbidden — user usr_87060 attempted to access /admin/users without admin role.
+LOG-0108,2024-06-29T21:25:00Z,session-manager,WARN [api-gateway] 401 returned to client client_1409: bearer token missing from Authorization header.
+LOG-0109,2024-10-27T06:33:00Z,http-client,ERROR [service-mesh] Network timeout reaching payment-core in eu-west-1. Latency: 14728ms.
+LOG-0110,2024-12-26T02:58:00Z,ingestion-service,"ERROR [ingestion-service] Schema validation failed: field 'amount' expected float, got string. Record ID: rec_78732."
+LOG-0111,2024-10-08T09:46:00Z,ml-inference,ERROR [file-processor] File descriptor limit reached (62157/15). New connections refused.
+LOG-0112,2024-10-25T11:22:00Z,query-executor,ERROR [db-pool] Connection to postgres-primary:27017 timed out after 5791ms. Pool size: 11/15.
+LOG-0113,2024-04-25T19:12:00Z,session-manager,WARN [api-gateway] 401 returned to client client_4228: bearer token missing from Authorization header.
+LOG-0114,2024-07-25T18:00:00Z,identity-provider,ERROR [session-manager] Authentication handshake failed: HMAC signature mismatch. IP: 10.127.52.91
+LOG-0115,2024-03-30T13:32:00Z,ingestion-service,ERROR [api-handler] Payload validation error: 'transaction_type' enum mismatch. Received: 'XYZ'.
+LOG-0116,2024-10-13T02:32:00Z,fx-rate-fetcher,WARN [data-enrichment] Third-party enrichment API Flutterwave slow response: 5159ms (SLA: 2000ms).
+LOG-0117,2024-06-23T03:51:00Z,payments-core,CRITICAL [order-service] Database unreachable: pg-replica-02. Socket timeout after 4776ms.
+LOG-0118,2024-05-11T17:52:00Z,data-export,WARN [admin-api] 403 Forbidden — user usr_87814 attempted to access /admin/users without admin role.
+LOG-0119,2024-05-08T22:28:00Z,vpc-gateway,WARN [health-checker] notification-svc health endpoint unreachable: connection timed out after 10064ms.
+LOG-0120,2024-10-15T15:49:00Z,kyc-service,CRITICAL [payout-service] Partner bank API Jumio returned unexpected 500. Transaction ID: txn_216276.

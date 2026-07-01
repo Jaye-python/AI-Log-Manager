@@ -1,0 +1,2 @@
+log_id,root_cause_label,issue,predicted_root_cause_id,predicted_root_cause_label,affected_service,severity,recommended_action,confidence
+LOG-0001,RC-03,Upstream provider Twilio returned 502. Retried 1 times. Failing over.,RC-03,Third-Party API Failure,fx-rate-fetcher,High,"Check vendor status page, implement retry logic, activate fallback",0.4614

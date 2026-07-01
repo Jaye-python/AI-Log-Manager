@@ -1,5 +1,11 @@
 # AI-enabled Log Manager
 
+## Demo
+
+[Watch on YouTube](https://youtu.be/saQkZxw7miw)
+
+---
+
 ## Tech Stack
 
 | Tool | Role |
