@@ -221,6 +221,44 @@ LOG-002,RC-02,Connection timed out after 30s on port 5432,RC-02,Database Connect
 
 ---
 
+---
+
+## Data Preprocessing Steps
+
+All preprocessing is handled in `src/preprocess.py` and runs identically during training and inference so the model always sees data in the same format.
+
+**1. Strip punctuation and brackets**
+Characters like `[`, `]`, `(`, `)`, `:`, `,`, and `-` are replaced with spaces. These are structural log formatting characters that carry no meaning for classification.
+
+**2. Mask variable values with placeholders**
+Specific values that change between log entries are replaced with fixed tokens so the model learns the error pattern, not the specific numbers:
+
+| What gets replaced | Placeholder |
+|--------------------|-------------|
+| IP addresses (e.g. `192.168.1.45`) | `<IP_ADDR>` |
+| ISO timestamps (e.g. `2024-01-15T08:32:11Z`) | `<TIMESTAMP>` |
+| Transaction/user/record IDs (e.g. `txn_abc123`) | `<ID>` |
+| Numeric metrics with units (e.g. `30ms`, `512mb`) | `<METRIC>` |
+| Ratios (e.g. `3/5`) | `<RATIO>` |
+| Bare numbers (e.g. `8080`, `3`) | `<NUM>` |
+
+**3. Lowercase**
+The entire message is lowercased so `ERROR`, `Error`, and `error` are treated as the same word.
+
+**4. Normalise whitespace**
+Consecutive spaces left behind by substitutions are collapsed into single spaces.
+
+**5. Combine service name and cleaned message**
+The microservice name (e.g. `auth-service`) is prepended to the cleaned log message to form a single text feature. This lets the model use service context alongside message content.
+
+**6. TF-IDF vectorization**
+The combined text is scored using TF-IDF with unigrams and bigrams (`ngram_range=(1,2)`) capped at 1500 features. Words and two-word phrases that best distinguish one root cause category from another get the highest scores.
+
+**7. Synthetic keyword augmentation (training only)**
+One extra training row per root cause category is built from the `example_keywords` column in `root_cause_labels.csv`. These rows are added to the training set only — never to the test set — so the model learns the vocabulary for each category even if it appears rarely in the real data.
+
+---
+
 ## What I use for training (file, fields, models) and training steps
 
 ### Source Files
